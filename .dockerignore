@@ -1,0 +1,12 @@
+.bundle
+.DS_Store
+.ebextensions
+.elasticbeanstalk
+.env
+.git
+.yardoc
+log/*
+tmp
+spec
+coverage/
+public/assets/

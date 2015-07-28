@@ -1,0 +1,16 @@
+db:
+  image: mongo:3.0
+  command: mongod --smallfiles --quiet --logpath=/dev/null
+web:
+  build: .
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/myapp
+  ports:
+    - "3000:3000"
+  links:
+    - db
+  environment:
+    RACK_ENV: production
+    RAILS_ENV: production
+    SECRET_KEY_BASE: 560ea30c110b0ce9112b248441bde2e74d3d5120898894f1aef3202c63e9a3423f400cdd73dc58f7d71251fa0d991df3da671bba0f840521e3e48f55e299e11d
