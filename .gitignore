@@ -64,9 +64,7 @@ public/assets
 # Secrets
 config/secrets.yml
 .env
-.env.test
-.env.local
-.env.staging
+.env.*
 
 # Simplecov
 coverage/
