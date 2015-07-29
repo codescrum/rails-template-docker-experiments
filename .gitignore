@@ -53,6 +53,7 @@ tmp/
 public/system
 public/spree
 public/uploads
+public/assets
 /public/system*
 
 .idea/
