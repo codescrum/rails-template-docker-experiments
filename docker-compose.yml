@@ -2,7 +2,7 @@ db:
   image: mongo:3.0
   command: mongod --smallfiles --quiet
 nginx:
-  build: ./nginx
+  build: ./config/nginx
   links:
     - web:web
   ports:
