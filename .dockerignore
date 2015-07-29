@@ -3,6 +3,7 @@
 .ebextensions
 .elasticbeanstalk
 .env
+.env.*
 .git
 .yardoc
 log/*
