@@ -4,11 +4,12 @@ webapp:
     service: railsapp
   links:
     - db
+    - redis
   env_file: .env
   environment:
     RACK_ENV: production
     RAILS_ENV: production
-    VIRTUAL_HOST: beer.docker
+    VIRTUAL_HOST: rails-template.docker
 db:
   extends:
     file: docker-compose-common-services.yml
@@ -17,3 +18,17 @@ proxy:
   extends:
     file: docker-compose-common-services.yml
     service: nginx-proxy
+redis:
+  extends:
+    file: docker-compose-common-services.yml
+    service: redis
+worker:
+  extends:
+    file: docker-compose-common-services.yml
+    service: sidekiq
+  env_file: .env
+  environment:
+    RAILS_ENV: production
+  links:
+    - db
+    - redis

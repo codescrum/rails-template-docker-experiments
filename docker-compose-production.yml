@@ -4,6 +4,7 @@ webapp:
     service: railsapp
   links:
     - db
+    - redis
   env_file: .env.production
   environment:
     RACK_ENV: production
@@ -18,3 +19,17 @@ webserver:
     service: nginx
   links:
     - webapp:webapp
+redis:
+  extends:
+    file: docker-compose-common-services.yml
+    service: redis
+worker:
+  extends:
+    file: docker-compose-common-services.yml
+    service: sidekiq
+  env_file: .env
+  environment:
+    RAILS_ENV: production
+  links:
+    - db
+    - redis

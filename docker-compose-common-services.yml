@@ -12,6 +12,11 @@ nginx-proxy:
     - "80:80"
   volumes:
     - "/var/run/docker.sock:/tmp/docker.sock"
+redis:
+  image: redis
+sidekiq:
+  build: .
+  command: bundle exec sidekiq -e production -c 25
 # Old nginx config
 nginx:
   build: ./config/nginx

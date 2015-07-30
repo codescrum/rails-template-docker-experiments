@@ -12,5 +12,7 @@ RUN bundle install --without development test doc --jobs=4
 # Everything up to here was cached. This includes the bundle install, unless the Gemfiles changed.
 # Now copy the app into the image.
 ADD . /myapp
+# Cleanup
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Expose unicorn port 8080
 EXPOSE 8080
