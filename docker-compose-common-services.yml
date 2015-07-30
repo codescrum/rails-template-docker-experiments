@@ -1,12 +1,19 @@
 mongodb:
   image: mongo:3.0
   command: mongod --smallfiles --quiet
+railsapp:
+  build: .
+  command: bundle exec unicorn -E production -c config/unicorn.rb
+  volumes:
+    - .:/myapp
+nginx-proxy:
+  image: jwilder/nginx-proxy:latest
+  ports:
+    - "80:80"
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+# Old nginx config
 nginx:
   build: ./config/nginx
   ports:
     - "80:80"
-railsapp:
-  build: .
-  command: bundle exec rails s -p 3000 -b '0.0.0.0'
-  volumes:
-    - .:/myapp

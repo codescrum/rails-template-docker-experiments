@@ -4,7 +4,7 @@ webapp:
     service: railsapp
   links:
     - db
-  env_file: .env
+  env_file: .env.production
   environment:
     RACK_ENV: production
     RAILS_ENV: production

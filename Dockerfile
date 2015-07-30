@@ -12,3 +12,5 @@ RUN bundle install --without development test doc --jobs=4
 # Everything up to here was cached. This includes the bundle install, unless the Gemfiles changed.
 # Now copy the app into the image.
 ADD . /myapp
+# Expose unicorn port 8080
+EXPOSE 8080
