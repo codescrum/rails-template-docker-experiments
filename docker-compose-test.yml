@@ -1,0 +1,21 @@
+webapptest:
+  build: .
+  dockerfile: Dockerfile.test
+  command: rspec spec
+  volumes:
+    - .:/myapp
+  links:
+    - db
+    - redis
+  env_file: .env.test
+  environment:
+    RACK_ENV: test
+    RAILS_ENV: test
+db:
+  extends:
+    file: docker-compose-common-services.yml
+    service: mongodb
+redis:
+  extends:
+    file: docker-compose-common-services.yml
+    service: redis
