@@ -1,0 +1,49 @@
+db:
+  extends:
+    file: docker-compose-common-services.yml
+    service: mongodb
+redis:
+  extends:
+    file: docker-compose-common-services.yml
+    service: redis
+
+webapp:
+  extends:
+    file: docker-compose-common-services.yml
+    service: railsapp
+  links:
+    - db
+    - redis
+  env_file: .env
+  environment:
+    SERVICE_8080_NAME: "webapp"
+    SERVICE_8080_TAGS: "production,webapp"
+    RACK_ENV: production
+    RAILS_ENV: production
+  ports:
+    - 8080
+
+lb:
+  build: .
+  dockerfile: config/nginx/consul/Dockerfile
+  links:
+    - consul
+  ports:
+    - "80:80"
+
+consul:
+  command: -server -bootstrap -advertise 192.168.99.100
+  image: progrium/consul:latest
+  ports:
+    - "8300:8300"
+    - "8400:8400"
+    - "8500:8500"
+    - "8600:53/udp"
+
+registrator:
+  command: consul://consul:8500
+  image: progrium/registrator:latest
+  links:
+    - consul
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
