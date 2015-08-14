@@ -1,5 +1,5 @@
 require 'sidekiq/api'
-redis_url = Rails.env.development? ? 'redis://127.0.0.1:6379' : "redis://#{ENV['RAILSTEMPLATE_REDIS_1_PORT_6379_TCP_ADDR']}:6379"
+redis_url = Rails.env.development? ? 'redis://127.0.0.1:6379' : "redis://redis.marathon.mesos:6379"
 redis_config = { url: redis_url, namespace: 'sidekiq' }
 
 Sidekiq.configure_server do |config|

@@ -1,0 +1,14 @@
+{
+  "container": {
+    "docker": {
+      "image": "mongo:3.0"
+    }
+  },
+  "id": "mongo",
+  "type": "DOCKER",
+  "instances": 1,
+  "cpus": 0.5,
+  "mem": 256,
+  "uris": [],
+  "cmd": "mongod --smallfiles --quiet"
+}
