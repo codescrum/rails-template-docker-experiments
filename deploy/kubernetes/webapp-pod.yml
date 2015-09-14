@@ -35,4 +35,4 @@ spec:
       volumes:
         - name: myapp
           hostPath:
-            path: '/Users/johan.tique/code/codescrum/projects/uservices_all/rails-template'
+            path: '/var/files'
