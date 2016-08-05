@@ -1,6 +1,6 @@
-# CODESCRUM RAILS TEMPLATE
+# RAILS TEMPLATE
 
-A base template for deploying Rails applications.
+A base template for deploying Rails applications used by Codescrum.
 
 ## ESSENTIAL VERSIONS
 
